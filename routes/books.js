@@ -31,11 +31,19 @@ router.get('/books/:id/edit', function(req,res,next) {
 });
 
 router.post('/books/:id/update', function(req, res, next) {
-  bookCollection.findAndModify({query: {_id: req.params.id}, remove: true, update: {title:req.body.title, author: req.body.author}}, function(err, record) {
+  bookCollection.updateById(req.params.id, {title:req.body.title, author: req.body.author}, function(err, record) {
     if (err) throw "Try again."
   });
   res.redirect('/books');
 });
+
+//Alternate post route
+// router.post('/books/:id/update', function(req, res, next) {
+//   bookCollection.findAndModify({query: {_id: req.params.id}, remove: true, update: {title:req.body.title, author: req.body.author}}, function(err, record) {
+//     if (err) throw "Try again."
+//   });
+//   res.redirect('/books');
+// });
 
 router.post('/books/:id/delete', function(req, res, next) {
   bookCollection.remove({_id: req.params.id}, function (err, record) {
