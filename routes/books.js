@@ -31,7 +31,7 @@ router.get('/books/:id/edit', function(req,res,next) {
 });
 
 router.post('/books/:id/update', function(req, res, next) {
-  bookCollection.updateById({_id: req.params.id}, {title:req.body.title, author: req.body.author}, function(err, record) {
+  bookCollection.findAndModify({query: {_id: req.params.id}, remove: true, update: {title:req.body.title, author: req.body.author}}, function(err, record) {
     if (err) throw "Try again."
   });
   res.redirect('/books');
