@@ -1,0 +1,15 @@
+extends ../layout
+
+block content
+  h1 New Book
+
+  form(action="/books", method="post")
+    div
+      h3 Title
+      input(type="text" name="title")
+
+      h3 Author
+      input(type="text" name="author")
+      
+    div
+      input(type="submit")

@@ -1,0 +1,20 @@
+extends ../layout
+
+block content
+  h1 Books
+
+  table
+   thead
+     tr
+       th ID
+       th Title
+       th Author
+   tbody
+     for book in allBooks
+       tr
+         td= book._id
+         td= book.title
+         td= book.author
+          a(href='/books/' + book._id)= book.title
+
+  a(href="/books/new") New Book

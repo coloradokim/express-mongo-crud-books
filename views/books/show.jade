@@ -1,0 +1,11 @@
+extends ../layout
+
+block content
+  h3= theBook.title
+  h3= theBook.author
+
+  a(href="/books/" + theBook._id + '/edit') Edit
+
+  div.actions
+  form(action="/books/" + theBook._id + "/delete", method="post")
+    input(type="submit", value="Delete")
